@@ -1,0 +1,75 @@
+<!-- from the index.cshtml
+    <div class="searchResults">
+        <h1>New Kids Movies:</h1>
+        <form method="POST" asp-page-handler="Details">
+            @for(int i = 0; i < Model.posterURLSkids.Count; i++) {
+                string path = "https://image.tmdb.org/t/p/w500" + Model.posterURLSkids[i];
+                <div class="thumbs" style="background: url(@path); background-size: cover;"
+                    title="@Model.overviewsKids[i]">
+                    <input type="submit" class="thumbButton" name="movieID" value="@Model.movieIDSkids[i]" />
+                </div>
+            }
+        </form>
+    </div>
+-->
+// from the index.cshtml.cs file
+/*
+
+    public List<string> posterURLSkids = new List<string>();
+    public List<string> overviewsKids = new List<string>();
+    public List<string> movieIDSkids = new List<string>();
+
+    if(Fetch.posterSetKids.results.Count <= MAX_RESULTS) {
+        foreach(Poster poster in Fetch.posterSetKids.results) {
+            posterURLSkids.Add(poster.poster_path);
+            overviewsKids.Add(poster.overview);
+            movieIDSkids.Add(poster.id.ToString());
+        }
+    }
+    else {
+        for(int i = 0; i < MAX_RESULTS; i++) {
+            posterURLSkids.Add(Fetch.posterSetKids.results[i].poster_path);
+            overviewsKids.Add(Fetch.posterSetKids.results[i].overview);
+            movieIDSkids.Add(Fetch.posterSetKids.results[i].id.ToString());
+        }
+    }
+*/
+
+// from the fetch.cs file
+/*
+    // Gets the lastest Kids movies
+    // https://api.themoviedb.org/3/discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc&api_key=d194eb72915bc79fac2eb1a70a71ddd3
+    // Gets the Movie trends for the last week(7 days)
+    response = await client.GetAsync(
+        "https://api.themoviedb.org/3/discover/movie?certification_country=US&certification=G&sort_by=popularity.desc&api_key=" + 
+            API_KEY);
+
+    if(response.IsSuccessStatusCode) { // 200
+        Data = await response.Content.ReadAsStringAsync();
+        posterSetKids = JsonSerializer.Deserialize<PosterSetKids>(Data);
+    }
+    else {
+        Data = null;
+    }
+*/
+
+// from site.js 
+/*
+// YouTube Player Slide-up/Slide-down
+let ytPlayer = document.querySelector('#youtubePlayer');
+
+let isOpen = false;
+function togglePlayer() {
+    if(isOpen) {
+        $('#youtubePlayer').animate({
+            marginTop: '800px'
+        }, 300, 'swing');
+        isOpen = false;
+    } else {        
+        $('#youtubePlayer').animate({
+            marginTop: '15px'
+        }, 360, 'swing');
+        isOpen = true;
+    }
+}
+*/
